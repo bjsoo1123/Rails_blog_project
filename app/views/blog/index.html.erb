@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <h1>나만의 블로그 작성하기.</h1>
+    <% if user_signed_in? %>
+      <h2>안녕하세요! <%= User.find_by(id: session[:user_id]).nickname %>
+        님!</h2>
+
+    <%= link_to '로그아웃', logout_path, method: 'delete' %>
+
+    <%= link_to '개인정보 수정', update_path %>
+
+    <% else %>
+      <h3>로그인 하기</h3>
+      <%= flash[:alert] %>
+      <%= form_tag index_path do %>
+      <input type="text" name="email" placeholder="이메일">
+      <br>
+      <input type="password" name="password" placeholder="패스워드">
+      <br>
+      <input type="submit" value="로그인">
+    <% end %>
+
+    <%= link_to '회원가입', sign_up_path %>
+
+  <% end %>
+
+</body>
+</html>

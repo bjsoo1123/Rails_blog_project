@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>업데이트 페이지 입니다.</h1>
+    <% user=User.find_by(id: session[:user_id]) %>
+
+    <%= flash[:alert] %>
+
+      <%= form_tag update_path do %>
+      닉네임: <input type="text" name="nickname" value=<%= user.nickname %>>
+      <br>
+      이메일: <input type="email" name="email" value=<%= user.email %>>
+      <br>
+      패스워드: <input type="password" name="password" placeholder="패스워드">
+      <br>
+      패스워드 확인: <input type="password" name="password_confirmation" placeholder="패스워드 원 모 타임">
+      <br>
+      <input type="submit" value="수정하기">
+    <% end %>
+    <%= link_to '삭제하기', destroy_path, method: 'delete' %>
+
+  </body>
+</html>
