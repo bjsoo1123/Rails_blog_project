@@ -4,7 +4,7 @@
 
     <h1>나만의 블로그 작성하기.</h1>
     <% if user_signed_in? %>
-      <h2>안녕하세요! <%= User.find_by(id: session[:user_id]).nickname %>
+      <h2>안녕하세요! <%= current_user.nickname %>
         님!</h2>
 
     <%= link_to '로그아웃', logout_path, method: 'delete' %>

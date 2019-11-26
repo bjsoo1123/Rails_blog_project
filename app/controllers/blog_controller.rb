@@ -50,12 +50,11 @@ class BlogController < ApplicationController
 
   def edit
     if params[:password] === params[:password_confirmation]
-      a = User.find_by(id: session[:user_id])
-      a.nickname = params[:nickname]
-      a.email = params[:email]
-      a.password = params[:password]
-      a.password_confirmation = params[:password_confirmation]
-      a.save
+      current_user.nickname = params[:nickname]
+      current_user.email = params[:email]
+      current_user.password = params[:password]
+      current_user.password_confirmation = params[:password_confirmation]
+      current_user.save
       redirect_to :root
     else
       flash.now[:alert]="패스워드가 동일하지 않습니다."
@@ -65,8 +64,7 @@ class BlogController < ApplicationController
 
 
   def destroy
-    a = User.find_by(id: session[:user_id])
-    a.destroy
+    current_user.destroy
     redirect_to :root
   end
 
