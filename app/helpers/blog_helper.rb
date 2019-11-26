@@ -13,7 +13,7 @@ module BlogHelper
   def destroy(user)
     destroyId = User.find_by(id: user.id)
     destroyId.destroy
-    redirect_to :root 
+    redirect_to :root
   end
 
   # 현재 쿠키에 존재하는 user를 찾는 action

@@ -20,4 +20,12 @@ Rails.application.routes.draw do
 
   delete 'destroy' => 'blog#destroy'
 
+  get 'upload' => 'blog#upload'
+  post 'upload' => 'blog#create'
+
+  get 'edit_post' => 'blog#edit_post'
+  post 'edit_post' => 'blog#update_post'
+  
+  get 'destroy_post' => 'blog#destroy_post'
+
 end

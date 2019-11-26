@@ -11,6 +11,18 @@
 
     <%= link_to '개인정보 수정', update_path %>
 
+    <br><br><%= link_to '게시물 등록', upload_path %>
+
+    <% @posts.each do |p|%>
+    <br>
+    =============================
+    <p>제목: <%= p.title %></p>
+    <p>내용: <%= p.content %></p>
+    <p>게시 날짜: <%= p.created_at %></p>
+    <a href='edit_post?post_id= <%= p.id %>'>수정 </a>
+    <a href='destroy_post?post_id= <%= p.id %>'>삭제</a>
+    <% end %>
+    <br>=============================
     <% else %>
       <h3>로그인 하기</h3>
       <%= flash[:alert] %>

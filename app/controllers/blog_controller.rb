@@ -1,6 +1,9 @@
 class BlogController < ApplicationController
 
   def index
+    if current_user
+    @posts = Post.where(user_id: current_user.id)
+  end
   end
 
 
@@ -65,6 +68,37 @@ class BlogController < ApplicationController
 
   def destroy
     current_user.destroy
+    redirect_to :root
+  end
+
+
+  def upload
+  end
+
+
+  def create
+    Post.create(user_id: params[:user_id], title: params[:title], content: params[:content])
+    redirect_to :root
+  end
+
+
+  def edit_post
+    @post = Post.find(params[:post_id])
+  end
+
+
+  def update_post
+    updateId = Post.find(params[:updateId])
+    updateId.title = params[:title]
+    updateId.content = params[:content]
+    updateId.save
+    redirect_to :root
+  end
+
+
+  def destroy_post
+    a = Post.find(params[:post_id])
+    a.destroy
     redirect_to :root
   end
 
